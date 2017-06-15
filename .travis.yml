@@ -1,0 +1,29 @@
+language: python
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      python: '3.6'
+install:
+    - sudo apt-get update
+    - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
+    - docker-compose --version
+    - sudo rm /usr/local/bin/docker-compose
+    - sudo pip install docker-compose
+
+    # clone miniworld_playground
+    - git clone https://github.com/miniworld-project/miniworld_playground.git
+    - pushd miniworld_playground
+script:
+    - uname -a
+    # run tests
+    - MW_CONFIG=tests/config.json BRANCH=docker docker-compose up -d
+    - eval $TEST_COMMAND
+after_script:
+    - docker-compose logs > docker-compose.txt
+addons:
+  artifacts:
+    s3_region: "eu-central-1"
+    paths:
+    - docker-compose.txt
