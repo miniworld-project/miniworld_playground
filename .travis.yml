@@ -24,6 +24,6 @@ after_script:
     - docker-compose logs > docker-compose.txt
 addons:
   artifacts:
-    s3_region: "eu-central-1"
+    s3_region: "eu-west-1"
     paths:
     - docker-compose.txt
