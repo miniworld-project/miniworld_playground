@@ -1,0 +1,13 @@
+{
+  "management": {
+    "use": true,
+    "device": "mgmt"
+  },
+  "provisioning": {
+    "boot_wait_timeout": 60
+  },
+  "logging": {
+    "level": "INFO"
+  }
+}
+

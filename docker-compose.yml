@@ -11,6 +11,7 @@ services:
     - /lib/modules:/lib/modules
     - ./scenarios:/app/scenarios
     - ./examples:/app/examples
+    - ./config.json:/app/config.json
     devices:
     # kvm access
     - "/dev/kvm:/dev/kvm"
@@ -18,4 +19,4 @@ services:
     - 5000:5000
     - 5001:5001
     environment:
-    - MW_CONFIG=${MW_CONFIG}
+    - MW_CONFIG=${MW_CONFIG-config.json}
