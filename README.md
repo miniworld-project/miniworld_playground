@@ -40,6 +40,7 @@ mwcli step
 mwcli exec --node-id 1 'ping -c 1 10.0.0.2'
 mwcli stop
 mwcli start examples/nb_bridged_wifi.json
+mwcli shell 1
 ```
 
 
