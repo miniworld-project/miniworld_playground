@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   coordinator:
-    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    image: miniworldproject/miniworld_core:${BRANCH-master}
     cap_add:
     - ALL
     privileged: true
@@ -23,7 +23,7 @@ services:
     - MW_CONFIG=${MW_CONFIG-coordinator.json}
     entrypoint: bash -c "modprobe ebtables ; mwserver --distributed"
   server1:
-    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    image: miniworldproject/miniworld_core:${BRANCH-master}
     cap_add:
     - ALL
     privileged: true
@@ -41,7 +41,7 @@ services:
     - MW_CONFIG=${MW_CONFIG-server.json}
     entrypoint: bash -c "modprobe ebtables ; mwserver --distributed --coordinator-address coordinator -ti eth0 --server"
   server2:
-    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    image: miniworldproject/miniworld_core:${BRANCH-master}
     cap_add:
     - ALL
     privileged: true

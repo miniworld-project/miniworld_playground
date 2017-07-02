@@ -13,8 +13,8 @@ The name of the repository already mentions it: this is the `playground` for Min
 Start MiniWorld inside Docker:
 
 ```bash
-BRANCH=nightly docker-compose pull
-BRANCH=nightly docker-compose up                # -d for detached mode
+BRANCH=master docker-compose pull
+BRANCH=master docker-compose up                # -d for detached mode
 ```
 
 This starts the MiniWorld container. It is ready if you see `core_1  | INFO __main__ <module>: rpc server running` printed to stdout.
@@ -57,9 +57,9 @@ To delete all resources, run `docker-compose rm`.
 Start one coordinator and two server processes:
 
 ```bash
-BRANCH=nightly docker-compose -f docker-compose-distributed.yml pull
-BRANCH=nightly docker-compose -f docker-compose-distributed.yml up coordinator
-BRANCH=nightly docker-compose -f docker-compose-distributed.yml up server1 server2
+BRANCH=master docker-compose -f docker-compose-distributed.yml pull
+BRANCH=master docker-compose -f docker-compose-distributed.yml up coordinator
+BRANCH=master docker-compose -f docker-compose-distributed.yml up server1 server2
 ```
 
 Run B.A.T.M.A.N. advanced in the distributed mode with servers connected by GRE (layer 2) tunnels:
