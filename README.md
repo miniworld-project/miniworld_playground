@@ -57,8 +57,9 @@ To delete all resources, run `docker-compose rm`.
 Start one coordinator and two server processes:
 
 ```bash
-docker-compose -f docker-compose-distributed.yml up coordinator
-docker-compose -f docker-compose-distributed.yml up server1 server2
+BRANCH=nightly docker-compose -f docker-compose-distributed.yml pull
+BRANCH=nightly docker-compose -f docker-compose-distributed.yml up coordinator
+BRANCH=nightly docker-compose -f docker-compose-distributed.yml up server1 server2
 ```
 
 Run B.A.T.M.A.N. advanced in the distributed mode with servers connected by GRE (layer 2) tunnels:
