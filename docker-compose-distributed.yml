@@ -1,0 +1,60 @@
+version: '3.2'
+
+services:
+  coordinator:
+    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    cap_add:
+    - ALL
+    privileged: true
+    volumes:
+    - /lib/modules:/lib/modules
+    - ./scenarios:/app/scenarios
+    - ./examples:/app/examples
+    - ./coordinator.json:/app/coordinator.json
+    devices:
+    # kvm access
+    - "/dev/kvm:/dev/kvm"
+    ports:
+    - 5001:5001
+    - 5561:5561
+    - 5562:5562
+    - 5563:5563
+    environment:
+    - MW_CONFIG=${MW_CONFIG-coordinator.json}
+    entrypoint: bash -c "modprobe ebtables ; mwserver --distributed"
+  server1:
+    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    cap_add:
+    - ALL
+    privileged: true
+    volumes:
+    - /lib/modules:/lib/modules
+    - ./examples:/app/examples
+    - ./scenarios:/app/scenarios
+    - ./server.json:/app/server.json
+    devices:
+    # kvm access
+    - "/dev/kvm:/dev/kvm"
+    ports:
+    - 5002:5000
+    environment:
+    - MW_CONFIG=${MW_CONFIG-server.json}
+    entrypoint: bash -c "modprobe ebtables ; mwserver --distributed --coordinator-address coordinator -ti eth0 --server"
+  server2:
+    image: miniworldproject/miniworld_core:${BRANCH-nightly}
+    cap_add:
+    - ALL
+    privileged: true
+    volumes:
+    - /lib/modules:/lib/modules
+    - ./examples:/app/examples
+    - ./scenarios:/app/scenarios
+    - ./server.json:/app/server.json
+    devices:
+    # kvm access
+    - "/dev/kvm:/dev/kvm"
+    ports:
+    - 5003:5000
+    environment:
+    - MW_CONFIG=${MW_CONFIG-server.json}
+    entrypoint: bash -c "modprobe ebtables ; mwserver --distributed --coordinator-address coordinator -ti eth0 --server"

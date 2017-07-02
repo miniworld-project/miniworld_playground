@@ -1,0 +1,7 @@
+{
+  "distributed": {
+    "use": true,
+    "cnt_servers": 2
+  }
+}
+

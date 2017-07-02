@@ -1,0 +1,14 @@
+{
+  "management": {
+    "use": false
+  },
+  "logging": {
+    "level": "INFO",
+    "log_provisioning": false,
+    "debug": false
+  },
+  "distributed": {
+    "use": true
+  }
+}
+
